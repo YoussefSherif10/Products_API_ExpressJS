@@ -1,11 +1,9 @@
-
-
 //import the DAO layer
-
+const productDAO = require('./productDao');
 
 const getProducts = function(done){
-  //call dao getproducts method and pass the parameter
-  
+  //call dao getProducts method and pass the parameter
+  productDAO.getProducts(done);
 }
 
 const getProductById = function(id, done){

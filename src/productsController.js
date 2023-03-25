@@ -1,11 +1,9 @@
-
-
 //import the productService
-
+const productService = require('./productsService');
 
 const getProducts = (done) => {
-   //call service getproducts method and pass the parameter
-
+   //call service getProducts method and pass the parameter
+    productService.getProducts(done);
 }
 
 const getProductById = (productId, done) => {

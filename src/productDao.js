@@ -1,18 +1,13 @@
+//import products data
+const products = require('./products.json');
 
-//import fs module
-
-
-
+// define response messages
+const readError = 'Encountered Error while reading the data';
 
 //The getProducts function take done as callback
 //It will read the product.json file
-
 const getProducts = function(done){
-    
-
-//parse the filecontent and save it in another varible say productdata
-//return the callback with first parameter as undefined and second parameter as productdata
-       
+    return done(null, products);
 }
 
 
