@@ -32,19 +32,13 @@ router.get("/", (req, res) => {
 //This method will get the product with given productId form the product.json 
 router.get("/:productId", (req, res) => {
     try {
-        //get the productid from the req.params
-
-
         //calling the controller getProductById method
-        //if error return the response as 400
-        //if result return the response as 200 with status as OK and  data as result
-        productsController.getProductById(productId, (err, results) => {
-
+        productsController.getProductById(req.params.productId, (err, results) => {
+            response(res, err, results);
         });
-
     } catch (err) {
         //Handle the exception return response as 400 with status as some error msg
-
+        res.status(400).send(errMsg);
     }
 });
 
@@ -53,18 +47,20 @@ router.post("/", (req, res) => {
     try {
         //get all the productdetails from the req.body
         const productDetails = {
-
+            "name": req.body.name,
+            "description": req.body.description,
+            "price": req.body.price,
+            "quantity": req.body.quantity
         }
         //calling the controller saveProductDetails method
-        //if error return the response as 400
-        //if result return the response as 201 with status as OK and  data as result
         productsController.saveProductDetails(productDetails, (err, results) => {
-
+            if (err)
+                return response(res, err, results);
+            return res.status(201).send({"STATUS": "OK", data: results});
         });
-
     } catch (err) {
         //Handle the exception return response as 400 with status as some error msg
-
+        res.status(400).send(errMsg);
     }
 });
 
@@ -73,19 +69,14 @@ router.post("/", (req, res) => {
 //This method will delete product with specific productid from the product.json 
 router.delete("/:productId", (req, res) => {
     try {
-        //get the productid from the req.params
-
-
         //calling the controller deleteProductById method
-        //if error return the response as 400
-        //if result return the response as 200 with status as OK and  data as result
-        productsController.deleteProductById(productId, (err, results) => {
-
+        productsController.deleteProductById(req.params.productId, (err, results) => {
+            response(res, err, results);
         });
 
     } catch (err) {
         //Handle the exception return response as 400 with status as some error msg
-
+        res.status(400).send(errMsg);
     }
 });
 
